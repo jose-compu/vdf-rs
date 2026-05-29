@@ -11,5 +11,5 @@ repository.workspace = true
 publish = false
 
 [dependencies]
-classgroup = { path = "../classgroup", version = "0.2" }
+vdf-classgroup = { path = "../vdf-classgroup", version = "0.2" }
 libc = "0.2"

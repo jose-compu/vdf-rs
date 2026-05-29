@@ -17,13 +17,13 @@
 //!
 //! This repo includes three crates
 //!
-//! * `classgroup`, which includes a class group implementation, as well as a
+//! * `vdf-classgroup`, which includes a class group implementation, as well as a
 //!   trait for class groups.
 //! * `vdf-rs`, which includes a Verifyable Delay Function (VDF) trait, as well as
 //!   an implementation of that trait.
 //! * `vdf-cli`, which includes a command-line interface to the `vdf-rs` crate.  It
 //!   also includes additional commands, which are deprecated and will later be
-//!   replaced by a CLI to the `classgroup` crate.
+//!   replaced by a CLI to the `vdf-classgroup` crate.
 //!
 //! ## Usage
 //!
@@ -75,7 +75,7 @@
 //!
 //! Benchmarks are provided for the classgroup operations.  Run `cargo bench`
 //! to run them.  Additional benchmarks are under development.
-use classgroup;
+use vdf_classgroup as classgroup;
 
 mod create_discriminant;
 use std::fmt::Debug;

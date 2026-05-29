@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-use classgroup::{
+use vdf_classgroup::{
     gmp::mpz::{mpz_ptr, mpz_srcptr, Mpz},
     gmp_classgroup::GmpClassGroup,
     ClassGroup,

@@ -15,7 +15,7 @@
 #[macro_use]
 extern crate criterion;
 
-use classgroup::{gmp::mpz::Mpz, gmp_classgroup::GmpClassGroup, ClassGroup};
+use vdf_classgroup::{gmp::mpz::Mpz, gmp_classgroup::GmpClassGroup, ClassGroup};
 use criterion::Criterion;
 use std::str::FromStr;
 

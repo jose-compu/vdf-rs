@@ -1,7 +1,7 @@
 //! Emit precomputed discriminants for tooling.
 #![allow(clippy::all)]
 
-use classgroup::gmp::mpz::Mpz;
+use vdf_classgroup::gmp::mpz::Mpz;
 use vdf_rs::create_discriminant;
 
 fn main() {

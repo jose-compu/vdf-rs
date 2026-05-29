@@ -26,6 +26,6 @@ publish = false
 
 [dependencies]
 clap = { version = "4.5", features = ["derive"] }
-classgroup = { path = "../classgroup", version = "0.2" }
+vdf-classgroup = { path = "../vdf-classgroup", version = "0.2" }
 vdf-rs = { path = "../vdf-rs", version = "0.2" }
 hex = "0.4"

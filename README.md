@@ -35,7 +35,7 @@ any gains in our benchmarks.
 | Crate | crates.io | Purpose |
 |-------|-----------|---------|
 | `vdf-rs` | yes | VDF trait and Pietrzak / Wesolowski implementations |
-| `classgroup` | yes | Class group arithmetic (GMP-backed) |
+| `vdf-classgroup` | yes | Class group arithmetic (GMP-backed) |
 | `vdf-cli` | no | Command-line tool |
 | `vdf-competition` | no | Competition helper binary |
 

@@ -10,4 +10,4 @@ publish = false
 
 [dependencies]
 vdf-rs = { path = "../vdf-rs", version = "0.2" }
-classgroup = { path = "../classgroup", version = "0.2" }
+vdf-classgroup = { path = "../vdf-classgroup", version = "0.2" }

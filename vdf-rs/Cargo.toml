@@ -26,7 +26,7 @@ homepage.workspace = true
 documentation.workspace = true
 
 [dependencies]
-classgroup = { path = "../classgroup", version = "0.2" }
+vdf-classgroup = { path = "../vdf-classgroup", version = "0.2" }
 num-traits = "0.2"
 sha2 = "0.10"
 bit-vec = "0.8"

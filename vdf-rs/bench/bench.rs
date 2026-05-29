@@ -19,7 +19,7 @@ extern crate criterion;
 
 use hex;
 
-use classgroup::{gmp_classgroup::GmpClassGroup, ClassGroup};
+use vdf_classgroup::{gmp_classgroup::GmpClassGroup, ClassGroup};
 use criterion::Criterion;
 use std::{cell::RefCell, env, rc::Rc};
 use vdf_rs::create_discriminant;

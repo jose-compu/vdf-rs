@@ -29,7 +29,7 @@
 include!(concat!(env!("OUT_DIR"), "/constants.rs"));
 
 use bit_vec::BitVec;
-use classgroup::BigNumExt;
+use vdf_classgroup::BigNumExt;
 use num_traits::Zero;
 use sha2::{Digest, Sha256};
 use std::u16;
@@ -129,7 +129,7 @@ pub fn create_discriminant<T: BigNumExt>(seed: &[u8], length: u16) -> T {
 #[cfg(test)]
 mod test {
     use super::*;
-    use classgroup::{gmp_classgroup::GmpClassGroup, ClassGroup};
+    use vdf_classgroup::{gmp_classgroup::GmpClassGroup, ClassGroup};
     type Mpz = <GmpClassGroup as ClassGroup>::BigNum;
     use std::str::FromStr;
 
