@@ -15,7 +15,7 @@
 name = "vdf-rs"
 version = "0.2.0"
 readme = "README.md"
-keywords = ["vdf", "classgroup", "crypto", "cryptography", "verifiable-delay-function"]
+keywords = ["vdf", "classgroup", "crypto", "cryptography", "delay-function"]
 categories = ["cryptography", "algorithms"]
 description = "Maintained Rust implementation of Verifiable Delay Functions (VDFs)"
 edition.workspace = true
