@@ -27,8 +27,12 @@
 //!
 //! ## Usage
 //!
-//! First, install Rust, Cargo, and the GNU Multiprecision Library (GMP).  Then,
-//! follow one of the below steps.
+//! First, install Rust (MSRV 1.85), Cargo, and the GNU Multiple Precision
+//! Library (GMP / `libgmp`). This crate is not pure-Rust: `vdf-classgroup`
+//! links against system GMP. The vendored `rust-gmp` backend is unchanged
+//! in 0.2.x; replacement is planned for 0.3.0.
+//!
+//! Then, follow one of the below steps.
 //!
 //! ### To use the command line interface
 //!

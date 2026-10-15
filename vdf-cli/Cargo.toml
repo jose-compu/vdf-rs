@@ -12,17 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 [package]
-name = "vdf-cli"
-version = "0.2.0"
+name = "vdf-rs-cli"
+version = "0.2.1"
 readme = "README.md"
-keywords = ["vdf", "crypto", "cryptography", "classgroup"]
 description = "Command-line interface for the vdf-rs Verifiable Delay Function crate"
-edition.workspace = true
-rust-version.workspace = true
 license.workspace = true
 repository.workspace = true
 homepage.workspace = true
-publish = false
+documentation = "https://docs.rs/vdf-rs-cli"
+keywords = ["vdf", "crypto", "cryptography", "classgroup", "cli"]
+categories = ["cryptography", "command-line-utilities"]
+edition.workspace = true
+rust-version.workspace = true
+
+[[bin]]
+name = "vdf-cli"
+path = "src/main.rs"
 
 [dependencies]
 clap = { version = "4.5", features = ["derive"] }

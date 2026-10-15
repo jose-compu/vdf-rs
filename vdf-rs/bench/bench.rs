@@ -19,9 +19,9 @@ extern crate criterion;
 
 use hex;
 
-use vdf_classgroup::{gmp_classgroup::GmpClassGroup, ClassGroup};
 use criterion::Criterion;
 use std::{cell::RefCell, env, rc::Rc};
+use vdf_classgroup::{gmp_classgroup::GmpClassGroup, ClassGroup};
 use vdf_rs::create_discriminant;
 fn bench_square(c: &mut Criterion) {
     let bench_params = |c: &mut Criterion, len: u16, seed: &[u8]| {

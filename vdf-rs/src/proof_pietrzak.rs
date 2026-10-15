@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 use super::proof_of_time::{deserialize_proof, iterate_squarings, serialize};
-use vdf_classgroup::{gmp_classgroup::GmpClassGroup, BigNumExt, ClassGroup};
 use num_traits::{One, Zero};
 use std::{fmt, num::ParseIntError, ops::Index, str::FromStr, u64, usize};
+use vdf_classgroup::{gmp_classgroup::GmpClassGroup, BigNumExt, ClassGroup};
 
 #[derive(PartialEq, Eq, Hash, PartialOrd, Ord, Copy, Clone, Debug)]
 pub struct Iterations(u64);

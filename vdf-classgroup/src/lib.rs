@@ -11,6 +11,13 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+//! Class groups of binary quadratic forms, using GNU MP (GMP) for
+//! arbitrary-precision arithmetic.
+//!
+//! **Build requirement:** a system `libgmp` development package (`libgmp-dev`
+//! on Debian/Ubuntu, `gmp` on Homebrew). The arithmetic backend is a vendored
+//! `rust-gmp` copy; replacing it is planned for 0.3.0 and is not part of this
+//! 0.2.x series.
 #![deny(unsafe_code)]
 // Legacy GMP FFI: duplicate `extern` prototypes vs `gmp::mpz`, extensive unsafe patterns.
 #![allow(clashing_extern_declarations)]
@@ -18,7 +25,7 @@
 #![allow(invalid_value)] // `mpz_t` stack slots: `uninitialized` then `__gmpz_init` (migrate to MaybeUninit)
 
 use num_traits::{One, Zero};
-use std::ops::{Mul, MulAssign, Rem, ShlAssign};
+use std::ops::{AddAssign, Mul, MulAssign, Rem, ShlAssign, SubAssign};
 
 pub mod gmp;
 
@@ -38,6 +45,8 @@ pub trait BigNum:
     + for<'a> MulAssign<&'a Self>
     + std::ops::Sub<u64, Output = Self>
     + std::ops::Add<u64, Output = Self>
+    + AddAssign<u64>
+    + SubAssign<u64>
     + std::convert::From<u64>
     + for<'a> std::convert::From<&'a [u8]>
     + std::ops::Shl<usize, Output = Self>

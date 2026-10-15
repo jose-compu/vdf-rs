@@ -32,17 +32,18 @@ any gains in our benchmarks.
 
 ## Crates
 
-| Crate | crates.io | Purpose |
-|-------|-----------|---------|
-| `vdf-rs` | yes | VDF trait and Pietrzak / Wesolowski implementations |
-| `vdf-classgroup` | yes | Class group arithmetic (GMP-backed) |
-| `vdf-cli` | no | Command-line tool |
-| `vdf-competition` | no | Competition helper binary |
+| Crate | Version | crates.io | Purpose |
+|-------|---------|-----------|---------|
+| `vdf-rs` | 0.2.1 | yes | VDF trait and Pietrzak / Wesolowski implementations |
+| `vdf-classgroup` | 0.2.1 | yes | Class group arithmetic (GMP-backed) |
+| `vdf-rs-cli` | 0.2.1 | yes | CLI binary `vdf-cli` (`cargo install vdf-rs-cli`; name `vdf-cli` is taken on crates.io) |
+| `vdf-competition` | — | no | Competition helper binary |
+| `generate-discriminants` | — | no | Internal discriminant table helper |
 
 ## Requirements
 
-- [Rust](https://doc.rust-lang.org/cargo/getting-started/installation.html) 1.85+
-- [GNU Multiple Precision Library (GMP)](https://gmplib.org/)
+- **MSRV:** [Rust](https://doc.rust-lang.org/cargo/getting-started/installation.html) 1.85+ (`rust-version = "1.85"`)
+- **GNU Multiple Precision Library (GMP)** — required at **build and link** time. `vdf-classgroup` (and therefore `vdf-rs` / `vdf-cli`) is not a pure-Rust crate. Install `libgmp` before `cargo build`, `cargo test`, or `cargo publish`.
 
 On Debian/Ubuntu:
 
@@ -56,7 +57,19 @@ On macOS (Homebrew):
 brew install gmp
 ```
 
+The arithmetic backend is a vendored `rust-gmp` copy. Known FFI limitations
+(in-place `mpz` layout, two’s-complement export, duplicate `extern` prototypes)
+are deferred to **0.3.0**. This 0.2.1 release does **not** change the GMP backend.
+
 ## Usage
+
+From crates.io:
+
+```sh
+cargo install vdf-rs-cli
+```
+
+From a git checkout:
 
 ```sh
 git clone https://github.com/jose-compu/vdf-rs.git
@@ -95,9 +108,11 @@ fn main() {
 ```sh
 cargo fmt --all
 cargo clippy --workspace --all-targets -- -D warnings
-cargo test --workspace
+cargo test --workspace -- --nocapture
 ./bench.sh aadf
 ```
+
+See [CHANGELOG.md](https://github.com/jose-compu/vdf-rs/blob/main/CHANGELOG.md) for release notes.
 
 ## License
 

@@ -29,10 +29,10 @@
 include!(concat!(env!("OUT_DIR"), "/constants.rs"));
 
 use bit_vec::BitVec;
-use vdf_classgroup::BigNumExt;
 use num_traits::Zero;
 use sha2::{Digest, Sha256};
 use std::u16;
+use vdf_classgroup::BigNumExt;
 
 fn random_bytes_from_seed(seed: &[u8], byte_count: usize) -> Vec<u8> {
     assert!(byte_count <= 32 * ((1 << 16) - 1));
@@ -84,11 +84,11 @@ pub fn create_discriminant<T: BigNumExt>(seed: &[u8], length: u16) -> T {
     debug_assert!(n >= Zero::zero());
     let rem = n.frem_u32(M);
 
-    // HACK HACK `rust-gmp` doesn’t expose += and -= with i32 or i64
+    // rust-gmp exposes AddAssign/SubAssign for u64, not i32/i64. Residues are unsigned.
     if residue > rem {
-        n = n + u64::from(residue - rem);
+        n += u64::from(residue - rem);
     } else {
-        n = n - u64::from(rem - residue);
+        n -= u64::from(rem - residue);
     }
     debug_assert!(n >= Zero::zero());
 
@@ -112,17 +112,19 @@ pub fn create_discriminant<T: BigNumExt>(seed: &[u8], length: u16) -> T {
         for (i, x) in sieve.iter().enumerate() {
             if !x {
                 let q = u64::from(M) * u64::from(i as u32);
-                n = n + q;
+                n += q;
                 if n.probab_prime(2) {
                     return -n;
                 }
-                n = n - q;
+                n -= q;
             }
         }
-        // M is set to a number with many prime factors so the results are
-        // more uniform https://eprint.iacr.org/2011/481.pdf
-        // TODO:  Explain previous reference to https://eprint.iacr.org/2011/401.pdf
-        n = n + (u64::from(M) * (1 << 16)) as u64
+        // Advance one sieve window (`M * 2^16`). `M` is a primorial
+        // (`8*3*5*7*11*13`) so residues coprime to `M` are denser in primes;
+        // this is Fouque–Tibouchi prime generation
+        // <https://eprint.iacr.org/2011/481.pdf>. An older comment cited
+        // 2011/401.pdf; that was a mis-citation of the same algorithm.
+        n += u64::from(M) << 16
     }
 }
 

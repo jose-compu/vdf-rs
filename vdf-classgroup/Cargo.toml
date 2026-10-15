@@ -13,7 +13,8 @@
 # limitations under the License.
 [package]
 name = "vdf-classgroup"
-version = "0.2.0"
+version = "0.2.1"
+readme = "README.md"
 description = "Class groups in Rust using GMP for arithmetic (maintained fork for vdf-rs)"
 keywords = ["classgroup", "vdf", "cryptography"]
 categories = ["cryptography", "algorithms"]

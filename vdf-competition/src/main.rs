@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+use std::{env, process};
 use vdf_classgroup::{
     gmp::mpz::{mpz_ptr, mpz_srcptr, Mpz},
     gmp_classgroup::GmpClassGroup,
     ClassGroup,
 };
-use std::{env, process};
 
 fn main() {
     let fail = |q| {

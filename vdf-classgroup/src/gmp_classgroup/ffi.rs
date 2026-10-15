@@ -17,6 +17,9 @@
 //! bignums be modified in-place, so that their storage can be reused.
 //! Furthermore, the `rust-gmp` crate doesn’t support many operations that
 //! this library requires.
+//!
+//! Remaining layout / two’s-complement work is deferred to 0.3.0 (GMP backend
+//! replacement). Do not treat these FFI hacks as 0.2.x API.
 #![allow(unsafe_code)]
 pub use super::super::gmp::mpz::Mpz;
 use super::super::gmp::mpz::{mp_bitcnt_t, mp_limb_t};
@@ -67,10 +70,9 @@ extern "C" {
     fn __gmpz_powm(rop: *mut Mpz, base: *const Mpz, exp: *const Mpz, modulus: *const Mpz);
 }
 
-// MEGA HACK: rust-gmp doesn’t expose the fields of this struct, so we must define
-// it ourselves and cast.
-//
-// Should be stable though, as only GMP can change it, and doing would break binary compatibility.
+// rust-gmp does not expose `mpz_struct` fields, so this crate redefines the
+// layout and casts. ABI-stable unless GMP breaks binary compatibility.
+// Replacing this (and the vendored rust-gmp copy) is 0.3.0 work.
 #[repr(C)]
 struct MpzStruct {
     mp_alloc: c_int,
@@ -269,7 +271,8 @@ pub fn export_obj(obj: &Mpz, v: &mut [u8]) -> Result<(), usize> {
     let is_negative = mpz_is_negative(obj);
 
     if is_negative {
-        // MEGA HACK: GMP does not have a function to perform 2's complement
+        // GMP has no two’s-complement export; one’s-complement then flip bits.
+        // A dedicated export path is 0.3.0 work.
         let obj = !obj;
         debug_assert!(
             !mpz_is_negative(&obj),
