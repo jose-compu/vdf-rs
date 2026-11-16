@@ -31,7 +31,6 @@ include!(concat!(env!("OUT_DIR"), "/constants.rs"));
 use bit_vec::BitVec;
 use num_traits::Zero;
 use sha2::{Digest, Sha256};
-use std::u16;
 use vdf_classgroup::BigNumExt;
 
 fn random_bytes_from_seed(seed: &[u8], byte_count: usize) -> Vec<u8> {

@@ -13,7 +13,7 @@
 // limitations under the License.
 use super::proof_of_time::{deserialize_proof, iterate_squarings, serialize};
 use num_traits::{One, Zero};
-use std::{fmt, num::ParseIntError, ops::Index, str::FromStr, u64, usize};
+use std::{fmt, num::ParseIntError, ops::Index, str::FromStr};
 use vdf_classgroup::{gmp_classgroup::GmpClassGroup, BigNumExt, ClassGroup};
 
 #[derive(PartialEq, Eq, Hash, PartialOrd, Ord, Copy, Clone, Debug)]
