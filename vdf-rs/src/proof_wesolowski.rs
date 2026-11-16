@@ -14,7 +14,7 @@
 
 use super::proof_of_time::{iterate_squarings, serialize};
 use sha2::{Digest, Sha256};
-use std::{cmp::Eq, collections::HashMap, hash::Hash, mem, u64, usize};
+use std::{cmp::Eq, collections::HashMap, hash::Hash, mem};
 use vdf_classgroup::{gmp_classgroup::GmpClassGroup, BigNum, BigNumExt, ClassGroup};
 
 #[derive(Debug, Clone)]

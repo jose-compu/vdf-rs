@@ -26,7 +26,6 @@ use super::super::gmp::mpz::{mp_bitcnt_t, mp_limb_t};
 use libc::{c_int, c_long, c_ulong, c_void, size_t};
 // pub use c_ulong;
 use std::mem::MaybeUninit;
-use std::usize;
 // We use the unsafe versions to avoid unecessary allocations.
 #[link(name = "gmp")]
 extern "C" {
@@ -83,7 +82,6 @@ struct MpzStruct {
 macro_rules! impl_div_ui {
     ($t:ident, $i:ident, $f:expr) => {
         pub fn $i(n: &Mpz, d: $t) -> $t {
-            use std::$t;
             let res = unsafe { $f(n, c_ulong::from(d)) };
             assert!(res <= $t::MAX.into());
             res as $t
